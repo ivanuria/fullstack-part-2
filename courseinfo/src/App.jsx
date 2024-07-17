@@ -44,6 +44,32 @@ function App() {
           id: 2
         }
       ]
+    },
+    {
+      name: "CSS",
+      id: 3,
+      parts: [
+        {
+          name: "Grid and Flex",
+          exercises: 17,
+          id: 1
+        },
+        {
+          name: "Center the div",
+          exercises: 2,
+          id: 2
+        },
+        {
+          name: "Use of variables",
+          exercises: 9,
+          id: 3
+        },
+        {
+          name: "Use of queries",
+          exercises: 21,
+          id: 4
+        }
+      ]
     }
   ]
 
