@@ -6,19 +6,18 @@ import ContactList from './components/ContactList'
 const App = () => {
   const [contacts, setContacts] = useState([
     {
-      id: 1,
       name: "Persephone"
     }
   ])
 
   const addToPhoneBook = (contact) => {
-    setContacts(contacts.concat({...contact, id:contacts.length+1}))
+    setContacts(contacts.concat(contact))
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <AddPhone setter={addToPhoneBook} />
+      <AddPhone setter={addToPhoneBook} contacts={contacts}/>
       <ContactList contacts={contacts} />
     </div>
   )

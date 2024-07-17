@@ -1,10 +1,20 @@
 import { useState } from "react"
 
-const AddPhone = ({setter}) => {
+const AddPhone = ({ setter, contacts }) => {
     const [name, setName] = useState("")
+    const contactsNames = contacts.map(contact => contact.name.toLowerCase())
+
+    const checkDuplicatedName = () => {
+        if (contactsNames.includes(name.toLowerCase())) return true
+        return false
+    }
 
     const addPhone = (event) => {
         event.preventDefault()
+        if (checkDuplicatedName()) {
+            alert(`${name} is already added to Phonebook`)
+            return
+        }
         setter({
             name: name
         })
