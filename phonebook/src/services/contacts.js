@@ -15,6 +15,7 @@ const getAll = () => {
 }
 
 const add = (newContact) => {
+    console.log("Adding new contact", newContact)
     return axios
         .post(urlBase, newContact)
         .then(response => response.data)
@@ -22,11 +23,19 @@ const add = (newContact) => {
 }
 
 const remove = (id) => {
-    console.log("REMOVE", id)
+    console.log("Removing", id)
     return axios
         .delete(`${urlBase}/${id}`)
         .then(response => response.data)
         .catch(logError("remove"))
 }
 
-export default { getAll, add, remove }
+const update = (id, contact) => {
+    console.log("Updating", id, "with", contact)
+    return axios
+        .put(`${urlBase}/${id}`, contact)
+        .then(response => response.data)
+        .catch(logError("update"))
+}
+
+export default { getAll, add, remove, update }

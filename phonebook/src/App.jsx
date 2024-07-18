@@ -28,11 +28,20 @@ const App = () => {
     }
   }
 
+  const updateContact = (id, newData) => {
+    console.log("REQUESTED contact updating", id, newData)
+    if (window.confirm(`${newData.name} is already added to Phonebook. Do you want to update the phone?`)) {
+      contactService
+        .update(id, newData)
+        .then(setContacts(contacts.map(c => c.id !== id ? c : newData)))
+    }
+  }
+
   return (
     <div>
       <h1>Phonebook</h1>
       <h2>Add new</h2>
-      <AddPhone setter={addToPhoneBook} contacts={contacts} />        
+      <AddPhone setter={addToPhoneBook} contacts={contacts} updater={ updateContact }/>        
       <h2>Contact List</h2>
       <ContactList contacts={contacts} removeContact={removeContact} />
     </div>

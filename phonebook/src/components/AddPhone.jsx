@@ -1,25 +1,26 @@
 import { useState } from "react"
 
-const AddPhone = ({ setter, contacts }) => {
+const AddPhone = ({ setter, updater, contacts }) => {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
-    const contactsNames = contacts.map(contact => contact.name.toLowerCase())
 
     const checkDuplicatedName = () => {
-        if (contactsNames.includes(name.toLowerCase())) return true
-        return false
+        console.log("Check if", name, "in", contacts)
+        const contact = contacts.find(contact => name.toLowerCase() === contact.name.toLowerCase())
+        if (contact !== undefined) {
+            console.log("Id", contact.id)
+            return contact.id
+        }
     }
 
     const addPhone = (event) => {
         event.preventDefault()
-        if (checkDuplicatedName()) {
-            alert(`${name} is already added to Phonebook`)
-            return
+        const id = checkDuplicatedName();
+        if (id !== undefined) {            
+            updater(id, {name, phone, id })
+        } else {
+            setter({ name, phone })
         }
-        setter({
-            name: name,
-            phone: phone
-        })
         setName("")
         setPhone("")
     }
