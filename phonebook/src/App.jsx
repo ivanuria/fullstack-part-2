@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from "axios"
+import contactService from "./services/contacts"
 import AddPhone from './components/AddPhone'
 import ContactList from './components/ContactList'
 
@@ -7,9 +7,9 @@ const App = () => {
   const [contacts, setContacts] = useState([])
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/contacts")
-      .then(response => setContacts(response.data))
+    contactService
+      .getAll()
+      .then(cantactsData => setContacts(cantactsData))
   }, [])
 
   const addToPhoneBook = (contact) => {
