@@ -14,4 +14,19 @@ const getAll = () => {
         .catch(logError("getAll"))
 }
 
-export default { getAll }
+const add = (newContact) => {
+    return axios
+        .post(urlBase, newContact)
+        .then(response => response.data)
+        .catch(logError("add"))
+}
+
+const remove = (id) => {
+    console.log("REMOVE", id)
+    return axios
+        .delete(`${urlBase}/${id}`)
+        .then(response => response.data)
+        .catch(logError("remove"))
+}
+
+export default { getAll, add, remove }

@@ -13,16 +13,28 @@ const App = () => {
   }, [])
 
   const addToPhoneBook = (contact) => {
-    setContacts(contacts.concat(contact))
+    contactService
+      .add(contact)
+      .then(savedContact => setContacts(contacts.concat(savedContact)))    
+  }
+
+  const removeContact = (id) => {
+    const index = contacts.findIndex(c => c.id === id)
+    console.log("REQUESTED remove Contact", id, "with index", index, "which existence is", contacts[index] !== undefined)
+    if (contacts[index] && window.confirm(`Do you really want to delete "${contacts[index].name}"`)) {
+      contactService
+        .remove(id)
+        .then(setContacts(contacts.filter(c => c.id !== id)))
+    }
   }
 
   return (
     <div>
       <h1>Phonebook</h1>
       <h2>Add new</h2>
-      <AddPhone setter={addToPhoneBook} contacts={contacts}/>        
+      <AddPhone setter={addToPhoneBook} contacts={contacts} />        
       <h2>Contact List</h2>
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} removeContact={removeContact} />
     </div>
   )
 }
