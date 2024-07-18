@@ -1,35 +1,16 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import axios from "axios"
 import AddPhone from './components/AddPhone'
 import ContactList from './components/ContactList'
 
 const App = () => {
-  const [contacts, setContacts] = useState([
-    {
-      name: "Persephone",
-      phone: "+34 666 777 666"
-    },
-    {
-      name: "Hades",
-      phone: "You better don't call me"
-    },
-    {
-      name: "Zeus",
-      phone: "+34 777 666 777"
-    },
-    {
-      name: "Europa",
-      phone: "+34 767 676 767"
-    },
-    {
-      name: "Scott Summers",
-      phone: "+1 (212) 555 65 45"
-    },
-    {
-      name: "Alex Summers",
-      phone: "+1 (212) 555 22 15"
-    }
-  ])
+  const [contacts, setContacts] = useState([])
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/contacts")
+      .then(response => setContacts(response.data))
+  }, [])
 
   const addToPhoneBook = (contact) => {
     setContacts(contacts.concat(contact))
