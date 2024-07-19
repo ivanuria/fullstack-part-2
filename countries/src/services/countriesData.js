@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "https://studies.cs.helsinki.fi/restcountries/"
+const baseUrl = "https://studies.cs.helsinki.fi/restcountries/api/"
 
 const returnResponse = (url) => (response) => {
     console.log("Response to", url, ": ", response.data)
