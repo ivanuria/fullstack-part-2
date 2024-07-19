@@ -15,14 +15,16 @@ const AddPhone = ({ setter, updater, contacts }) => {
 
     const addPhone = (event) => {
         event.preventDefault()
-        const id = checkDuplicatedName();
-        if (id !== undefined) {            
-            updater(id, {name, phone, id })
-        } else {
-            setter({ name, phone })
+        if (name !== "") {
+            const id = checkDuplicatedName();
+            if (id !== undefined) {            
+                updater(id, {name, phone, id })
+            } else {
+                setter({ name, phone })
+            }
+            setName("")
+            setPhone("")
         }
-        setName("")
-        setPhone("")
     }
 
     return (
