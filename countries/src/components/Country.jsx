@@ -32,7 +32,7 @@ const Country = ({country}) => {
                         {Object.keys(country.languages).map(code => <li className="country-languages__language" key={code}>{country.languages[code]}</li>)}
                     </ul>
                 </div>
-                <Weather country={country} weather={weather}/>        
+                <Weather country={country} weather={weather}/>
             </div>
         )
     }

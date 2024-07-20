@@ -3,7 +3,7 @@ const iconUrl = "https://openweathermap.org/img/wn/"
 const Weather = ({weather, country}) => {
     if (weather === null) return null
     return (
-        <div class="weather">
+        <div className="weather">
             <h2>Weather in {country.capital[0]}</h2>
             <p><b>Current Temperature</b>: {Math.round(weather.main.temp - 273.15, 2)} ºC</p>
             <p><b>Wind</b>: {weather.wind.speed} m/s</p>
