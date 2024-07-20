@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 // Components
 import Country from './components/Country'
+import HeaderFlag from './components/HeaderFlag'
 import Search from './components/Search'
 // Services
 import countriesData from './services/countriesData'
+// CSS
+import "./styles/index.css"
 
 const App = () => {
   const [countries, setCountries] = useState(null)
@@ -17,6 +20,9 @@ const App = () => {
       })
   }, [])
 
+  const setCountryHelper = (country) => {
+    setCountry(country)
+  }
 
   const renderBody = () => {
     if (countries === null) {
@@ -27,10 +33,15 @@ const App = () => {
     return (
       <>
         <header>
-          <Search countries={countries} setCountry={setCountry}/>
+          <div className="content-wrapper">
+            
+            <Search countries={countries} setCountry={setCountryHelper}/>
+          </div>
         </header>
         <main>
-          <Country country={country}/>
+          <div className="content-wrapper">
+            <Country country={country}/>
+          </div>
         </main>
       </>
     )
