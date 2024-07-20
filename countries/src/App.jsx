@@ -34,7 +34,7 @@ const App = () => {
       <>
         <header>
           <div className="content-wrapper">
-            
+            <HeaderFlag country={country} />
             <Search countries={countries} setCountry={setCountryHelper}/>
           </div>
         </header>

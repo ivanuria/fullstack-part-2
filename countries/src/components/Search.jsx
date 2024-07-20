@@ -5,16 +5,19 @@ import SearchResults from "./SearchResults"
 const Search = ({ countries, setCountry }) => {
     const [filter, setFilter] = useState("")
     const executeFilter = () => {
-        let filteredCountries = [];
+        let filteredCountries = []
         if (filter !== "" && filter !== null) {
             filteredCountries = countries.filter(country => country.name.common.toLowerCase().includes(filter.toLowerCase()))
         }
+        return filteredCountries
+    }
+    const filteredCountries = useDeferredValue(executeFilter(), [])
+
+    useEffect(() => {
         if (filteredCountries.length === 1) {
             setCountry(filteredCountries[0])
         }
-        return filteredCountries
-    }
-    const filteredCountries = useDeferredValue(executeFilter(), null)
+    }, [filteredCountries]) // This fixes a disturbing console error
 
     return (
         <div className="search">
